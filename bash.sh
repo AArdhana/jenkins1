@@ -1,1 +1,1 @@
-echo "ini adalah test pertama"
+echo "ini adalah test pertama dan kedua"
