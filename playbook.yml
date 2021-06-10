@@ -1,29 +1,26 @@
 ---
-hosts: server
-become: yes
-tasks: 
-  - 
-    name: "install httpd"
-    yum: 
-      name: httpd
-      state: latest
-  - 
-    name: "starting httpd"
-    service: 
-      name: httpd
-      state: started
-  - 
-    git: 
-      dest: /home/zki
-      repo: "https://github.com/ajizkai/docker-ansible.git"
-    name: "index html"
-  - 
-    copy: 
-      dest: /var/www/html
-      group: root
-      mode: 0777
-      owner: root
-      src: /home/zki/index.html
-    name: copy
+- hosts: server
+  become: yes
+  tasks: 
+     - name: "install httpd"
+       yum: 
+        name: httpd
+        state: latest
+     - name: "starting httpd"
+       service: 
+         name: httpd
+         state: started
+     -  name: "pull git"
+        git: 
+         repo: "https://github.com/ajizkai/docker-ansible.git"
+         dest: /home/zki
+     - name: "index html" 
+       copy: 
+         dest: /var/www/html
+         group: root
+         mode: 0777
+         owner: root
+         src: /home/zki/index.html
+    
 ...
        
